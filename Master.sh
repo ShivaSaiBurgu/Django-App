@@ -38,6 +38,6 @@ VALIDATE $? "updating packages"
    VALIDATE $? "enabling jenkins"
   sudo systemctl start jenkins &>>$LOGFILE
    VALIDATE $? "starting jenkins"
-   systemctl status jenkins &>>$LOGFILE
+  
   
  
