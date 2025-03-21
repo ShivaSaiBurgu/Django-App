@@ -34,9 +34,9 @@ VALIDATE $? "updating packages"
  VALIDATE $? "updating packages"
   sudo apt install fontconfig openjdk-17-jre &>>$LOGFILE
    VALIDATE $? "Installing Java"
-  java -version
   sudo systemctl enable jenkins &>>$LOGFILE
    VALIDATE $? "enabling jenkins"
   sudo systemctl start jenkins &>>$LOGFILE
    VALIDATE $? "starting jenkins"
   sudo systemctl status jenkins
+  java --version
