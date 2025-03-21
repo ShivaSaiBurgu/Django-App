@@ -10,7 +10,7 @@ fi
 time=$(date +%F-%H-%M-%S)
 script=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$time-$script.log
-validate() {
+VALIDATE() {
     if [ $1 -ne 0 ]
     then
     echo "$2....Failure"
@@ -21,22 +21,22 @@ validate() {
 }
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key &>>$LOGFILE
-validate $? "Downloading libraries" 
+VALIDATE $? "Downloading libraries" 
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null &>>$LOGFILE
-  validate $? "echoing"
+ VALIDATE $? "echoing"
   sudo apt-get update &>>$LOGFILE
-   validate $? "updating packages"
+   VALIDATE $? "updating packages"
   sudo apt-get install jenkins &>>$LOGFILE
-   validate $? "Installing Jenkins"
+   VALIDATE $? "Installing Jenkins"
   sudo apt update &>>$LOGFILE
-  validate $? "updating packages"
+ VALIDATE $? "updating packages"
   sudo apt install fontconfig openjdk-17-jre &>>$LOGFILE
-   validate $? "Installing Java"
+   VALIDATE $? "Installing Java"
   java -version
   sudo systemctl enable jenkins &>>$LOGFILE
-   validate $? "enabling jenkins"
+   VALIDATE $? "enabling jenkins"
   sudo systemctl start jenkins &>>$LOGFILE
-   validate $? "starting jenkins"
+   VALIDATE $? "starting jenkins"
   sudo systemctl status jenkins
