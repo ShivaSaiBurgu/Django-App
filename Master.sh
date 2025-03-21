@@ -16,7 +16,7 @@ VALIDATE() {
     echo "$2....Failure"
     exit 1
     else
-    echo "$1...success"
+    echo "$2...success"
     fi
 }
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
@@ -27,7 +27,7 @@ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   /etc/apt/sources.list.d/jenkins.list > /dev/null &>>$LOGFILE
  VALIDATE $? "echoing"
   sudo apt-get update &>>$LOGFILE
-   VALIDATE $? "updating packages"
+VALIDATE $? "updating packages"
   sudo apt-get install jenkins &>>$LOGFILE
    VALIDATE $? "Installing Jenkins"
   sudo apt update &>>$LOGFILE
