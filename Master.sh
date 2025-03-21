@@ -39,4 +39,4 @@ VALIDATE $? "updating packages"
   sudo systemctl start jenkins &>>$LOGFILE
    VALIDATE $? "starting jenkins"
   sudo systemctl status jenkins
-  java --version
+ 
