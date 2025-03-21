@@ -32,7 +32,6 @@ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
 VALIDATE $? "updating packages"
   sudo apt-get install jenkins &>>$LOGFILE
    VALIDATE $? "Installing Jenkins"
-  sudo apt update &>>$LOGFILE
  VALIDATE $? "updating packages"
   sudo apt install fontconfig openjdk-17-jre &>>$LOGFILE
    VALIDATE $? "Installing Java"
