@@ -19,6 +19,8 @@ VALIDATE() {
     echo "$2...success"
     fi
 }
+apt-get install -y wget &>>$LOGFILE
+VALIDATE $? "Installing wget"
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key &>>$LOGFILE
 VALIDATE $? "Downloading libraries" 
@@ -38,5 +40,6 @@ VALIDATE $? "updating packages"
    VALIDATE $? "enabling jenkins"
   sudo systemctl start jenkins &>>$LOGFILE
    VALIDATE $? "starting jenkins"
+   systemctl status jenkins &>>$LOGFILE
   
  
